@@ -6,10 +6,6 @@ import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
 import { Alert, Image, ScrollView, Text, View } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
-
-
-
-
 import ReactNativeModal from 'react-native-modal'
 import { fetchAPI } from '@/lib/fetch'
 
@@ -28,6 +24,8 @@ const SignUp = () => {
     error: '',
     code: '',
   })
+
+  // Function to handle sign-up button press - handles user registration
 
   const onSignUpPress = async () => {
     if (!isLoaded) {
@@ -50,6 +48,8 @@ const SignUp = () => {
       Alert.alert('Error', err.errors[0].longMessage)
     }
   }
+
+  // Function to handle verification button press - handles email verification
 
   const onPressVerify = async () => {
     if (!isLoaded) return;
