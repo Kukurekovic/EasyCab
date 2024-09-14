@@ -63,6 +63,10 @@ const GoogleTextInput = ({
                 <Image source={icon ? icon : icons.search} className='w-6 h-6' resizeMode='contain'/>
             </View>
           )}
+          textInputProps={{
+            placeholderTextColor: 'gray',
+            placeholder: initialLocation ?? "Where do you want to go?"
+          }}
         />
     </View>
   )
