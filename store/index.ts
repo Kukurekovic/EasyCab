@@ -2,7 +2,7 @@ import { DriverStore, LocationStore, MarkerData } from '@/types/type'
 import {create} from 'zustand'
 
 export const useLocationStore = create<LocationStore>((set) => ({
-    userAddress: null,
+    userAddress: null,  //values
     userLatitude: null,
     userLongitude: null,
     destinationLongitude: null,
@@ -10,7 +10,7 @@ export const useLocationStore = create<LocationStore>((set) => ({
     destinationAddress: null,
     setUserLocation: ({ latitude, longitude, address }: { latitude: number, longitude: number, address: string
     }) => {
-        set(() => ({
+        set(() => ({    //setters for values
             userLatitude: latitude,
             userLongitude: longitude,
             userAddress: address
@@ -18,7 +18,7 @@ export const useLocationStore = create<LocationStore>((set) => ({
     },
     setDestinationLocation: ({ latitude, longitude, address }: { latitude: number, longitude: number, address: string
     }) => {
-        set(() => ({
+        set(() => ({    //setters for values
             destinationLatitude: latitude,
             destinationLongitude: longitude,
             destinationAddress: address

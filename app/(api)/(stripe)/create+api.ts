@@ -1,4 +1,5 @@
 // Backend function to create the payment intent (boilerplate code from Stripe)
+// Create a payment intent, allow user to get possibility to pay
 
 import { Stripe } from "stripe";
 

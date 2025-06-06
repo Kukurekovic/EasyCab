@@ -56,7 +56,7 @@ const Payment = ({
           shouldSavePaymentMethod,
           intentCreationCallback,
         ) => {
-          const { paymentIntent, customer } = await fetchAPI(
+          const { paymentIntent, customer } = await fetchAPI( //created in the backend and passed to a frontend
             "/(api)/(stripe)/create",
             {
               method: "POST",
@@ -73,7 +73,7 @@ const Payment = ({
           );
 
           if (paymentIntent.client_secret) {
-            const { result } = await fetchAPI("/(api)/(stripe)/pay", {
+            const { result } = await fetchAPI("/(api)/(stripe)/pay", { //make a payment based on the paymentintent that we created
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const Payment = ({
             });
 
             if (result.client_secret) {
-              await fetchAPI("/(api)/ride/create", {
+              await fetchAPI("/(api)/ride/create", {//call from FE
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

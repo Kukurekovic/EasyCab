@@ -27,7 +27,7 @@ const SignUp = () => {
 
   // Function to handle sign-up button press - handles user registration
 
-  const onSignUpPress = async () => {
+  const onSignUpPress = async () => { //Clerk
     if (!isLoaded) {
       return
     }
@@ -51,7 +51,7 @@ const SignUp = () => {
 
   // Function to handle verification button press - handles email verification
 
-  const onPressVerify = async () => {
+  const onPressVerify = async () => {  //Clerk
     if (!isLoaded) return;
     
 
@@ -59,10 +59,10 @@ const SignUp = () => {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code: verification.code,
       })
-
+//Kada ispod kreiramo korisnika, pozivamo users+api.ts, ubacujemo podatke u Neon db, istovremeno kreiramo i povezujemo Clerk korisnika  i ulogujemo u sesiju
       if (completeSignUp.status === 'complete') {
-        await fetchAPI('/(api)/user', {
-          method: 'POST',
+        await fetchAPI('/(api)/user', { //create a new Neon user in a own db once a Clerk user gets created
+          method: 'POST',               
           body: JSON.stringify({
             name: form.name,
             email: form.email,

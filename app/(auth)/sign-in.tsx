@@ -17,7 +17,7 @@ const SignIn = () => {
     password: "",
   })
 
-  const onSignInPress = useCallback(async () => {
+  const onSignInPress = useCallback(async () => { //Clerk
     if (!isLoaded) {
       return
     }
@@ -78,7 +78,6 @@ const SignIn = () => {
               </Link>
           </View>
 
-          {/* Verification Modal */}
         </View>
     </ScrollView>
   )

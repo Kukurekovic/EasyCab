@@ -1,5 +1,7 @@
 import {useState, useEffect, useCallback} from "react";
 
+//fetchAPI zovemo u sign-up.tsx
+
 export const fetchAPI = async (url: string, options?: RequestInit) => {
     try {
         const response = await fetch(url, options);

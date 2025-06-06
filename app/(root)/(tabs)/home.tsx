@@ -13,9 +13,10 @@ import { useFetch } from '@/lib/fetch'
 
 
 
+
 export default function Page() {
   const {setUserLocation, setDestinationLocation} = useLocationStore()
-   const {signOut} = useAuth();
+  const {signOut} = useAuth();
   const { user } = useUser();
   const {data: recentRides, loading} = useFetch(`/(api)/ride/${user?.id}`);
 
@@ -43,7 +44,7 @@ export default function Page() {
       }
 
 
-    let location = await Location.getCurrentPositionAsync()
+    let location = await Location.getCurrentPositionAsync();
 
     const address = await Location.reverseGeocodeAsync({
       latitude: location.coords?.latitude!,
@@ -51,13 +52,13 @@ export default function Page() {
     });
 
     setUserLocation({
-      // latitude: location.coords.latitude,
-      // longitude: location.coords.longitude,
-      latitude: 37.78825,
-      longitude: -122.4324,
+       latitude: location.coords.latitude,
+       longitude: location.coords.longitude,
+      //latitude: 37.78825,
+      //longitude: -122.4324,
       address: `${address[0].name}, ${address[0].region}`
-    })
-  }
+    });
+  };
 
     requestLocation()
   }, [])

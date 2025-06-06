@@ -1,3 +1,4 @@
+//Allow the user to pay based on the provided payment intent
 import { Stripe } from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -15,16 +16,16 @@ export async function POST(request: Request) {
       );
     }
 
-    const paymentMethod = await stripe.paymentMethods.attach(
+    const paymentMethod = await stripe.paymentMethods.attach(//create a new payment method
       payment_method_id,
       { customer: customer_id },
     );
 
-    const result = await stripe.paymentIntents.confirm(payment_intent_id, {
+    const result = await stripe.paymentIntents.confirm(payment_intent_id, {//result of the payment
       payment_method: paymentMethod.id,
     });
 
-    return new Response(
+    return new Response(//send it to the frontend
       JSON.stringify({
         success: true,
         message: "Payment successful",
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error paying:", error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
+      status: 500,//server error
     });
   }
 }

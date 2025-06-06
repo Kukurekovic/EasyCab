@@ -1,6 +1,9 @@
 import { neon } from '@neondatabase/serverless';
 
-export async function POST(request: Request) {
+//Expo Api Route
+//Poziva se iz lib fetch.ts
+
+export async function POST(request: Request) { //Neon SQL
     try {
     const sql = neon(`${process.env.DATABASE_URL}`);
     const {name, email, clerkId} = await request.json();
@@ -11,7 +14,7 @@ export async function POST(request: Request) {
              {status: 400}
         )
     }
-
+//Prethodno smo u Neon db kreirali tabelu user sa poljima id, name, email i clerk_id
     const response = await sql`
         INSERT INTO users (
             name,
